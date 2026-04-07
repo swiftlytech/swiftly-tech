@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swiftly Tech – Engineering at the Speed of Business</title>
+  <meta name="description" content="Swiftly Tech builds mobile apps, custom ERP/CRM, Salesforce solutions, AI bots, and automation tools that accelerate your business." />
+  <meta name="keywords" content="mobile app development, ERP software, CRM software, Salesforce, AI bots, business automation, tech company" />
+  <meta property="og:title" content="Swiftly Tech – Engineering at the Speed of Business" />
+  <meta property="og:description" content="We engineer mobile apps, AI tools, ERP/CRM systems, and automation solutions that give your business an unfair competitive advantage." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0a0f1e',
+            'navy-deep': '#0d1224',
+            'navy-card': '#111827',
+            electric: '#3b82f6',
+            'electric-dark': '#2563eb',
+            cyan: '#06b6d4',
+          },
+          fontFamily: {
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #0a0f1e;
+      color: #f9fafb;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-warm {
+      background: linear-gradient(135deg, #a78bfa, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Gradient background */
+    .gradient-bg {
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    }
+
+    .gradient-bg-subtle {
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.15));
+    }
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-strong {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Fade up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up[data-delay="1"] { transition-delay: 0.1s; }
+    .fade-up[data-delay="2"] { transition-delay: 0.2s; }
+    .fade-up[data-delay="3"] { transition-delay: 0.3s; }
+    .fade-up[data-delay="4"] { transition-delay: 0.4s; }
+    .fade-up[data-delay="5"] { transition-delay: 0.5s; }
+    .fade-up[data-delay="6"] { transition-delay: 0.6s; }
+    .fade-up[data-delay="7"] { transition-delay: 0.7s; }
+
+    /* Particle canvas */
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* Float animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .animate-float { animation: float 4s ease-in-out infinite; }
+
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+    /* Pulse glow */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+    }
+    .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+    /* Scroll arrow animation */
+    @keyframes bounce-down {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    .bounce-down { animation: bounce-down 1.5s ease-in-out infinite; }
+
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Industry card */
+    .industry-card {
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+    .industry-card:hover { transform: translateY(-4px); }
+    .industry-card:hover .industry-overlay { background: rgba(10, 15, 30, 0.6); }
+    .industry-overlay {
+      background: rgba(10, 15, 30, 0.75);
+      transition: background 0.3s ease;
+    }
+
+    /* Process connector line */
+    .process-step { position: relative; }
+
+    /* Nav link active highlight */
+    .nav-link {
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: #e2e8f0; }
+
+    /* Toast */
+    #toast {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #toast.hide {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0f1e; }
+    ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 3px; }
+
+    /* Section divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(59,130,246,0.3), transparent);
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    /* Team avatar */
+    .team-avatar {
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    /* Gradient border button */
+    .btn-outline-gradient {
+      background: transparent;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+    .btn-outline-gradient::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      z-index: -1;
+    }
+
+    /* Input focus */
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    /* Glow orbs for background */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ── Custom cursor ── */
+    #custom-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: normal;
+    }
+    #cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(59, 130, 246, 0.6);
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    }
+    #cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: #3b82f6;
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transition: transform 0.06s ease, background 0.2s ease;
+    }
+    #custom-cursor.hovering #cursor-ring {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(6, 182, 212, 0.7);
+      background: rgba(59, 130, 246, 0.06);
+    }
+    #custom-cursor.hovering #cursor-dot {
+      background: #06b6d4;
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+    #custom-cursor.clicking #cursor-ring {
+      width: 28px;
+      height: 28px;
+      border-color: rgba(6, 182, 212, 0.9);
+    }
+    @media (pointer: coarse) {
+      #custom-cursor { display: none; }
+    }
+
+    /* ── Button ripple ── */
+    .ripple-btn { position: relative; overflow: hidden; }
+    .ripple-wave {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      background: rgba(255, 255, 255, 0.25);
+      animation: ripple-expand 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple-expand {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ── Tilt cards — disable default translateY during tilt ── */
+    .tilt-active { transform: none !important; will-change: transform; }
+
+    /* ── Typewriter cursor ── */
+    .tw-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: #06b6d4;
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: tw-blink 0.8s step-end infinite;
+    }
+    @keyframes tw-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ── Speed Challenge Game ── */
+    #game-arena {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      height: 320px;
+      margin: 0 auto;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      cursor: crosshair;
+      user-select: none;
+    }
+    #game-arena.idle { cursor: default; }
+
+    .game-target {
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      cursor: pointer;
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .game-target.alive { transform: translate(-50%, -50%) scale(1); }
+    .game-target.hit {
+      transform: translate(-50%, -50%) scale(0) !important;
+      transition: transform 0.12s ease-in;
+    }
+    .game-target-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.35), transparent 60%),
+                  linear-gradient(135deg, #3b82f6, #06b6d4);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+      animation: target-pulse 0.8s ease-in-out infinite alternate;
+    }
+    @keyframes target-pulse {
+      from { box-shadow: 0 0 16px rgba(59,130,246,0.5), 0 0 30px rgba(6,182,212,0.2); }
+      to   { box-shadow: 0 0 28px rgba(59,130,246,0.9), 0 0 50px rgba(6,182,212,0.5); }
+    }
+
+    .game-target-shrink {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(6, 182, 212, 0.15);
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: none;
+      animation: shrink-ring 1.2s linear forwards;
+    }
+    @keyframes shrink-ring {
+      from { transform: translate(-50%, -50%) scale(2.2); opacity: 0.7; }
+      to   { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+
+    #game-score-pop {
+      position: absolute;
+      pointer-events: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #06b6d4;
+      text-shadow: 0 0 12px rgba(6,182,212,0.8);
+      animation: score-float 0.7s ease-out forwards;
+      z-index: 10;
+    }
+    @keyframes score-float {
+      from { opacity: 1; transform: translateY(0) scale(1.2); }
+      to   { opacity: 0; transform: translateY(-40px) scale(0.8); }
+    }
+
+    #game-miss-flash {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: rgba(239, 68, 68, 0.08);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+    }
+    #game-miss-flash.flash { opacity: 1; }
+
+    #game-countdown-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 15, 30, 0.85);
+      border-radius: 20px;
+      z-index: 20;
+    }
+    #game-countdown-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 6rem;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: count-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes count-pop {
+      from { transform: scale(0.3); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* Progress bar shrink */
+    #game-time-bar {
+      transition: width 0.1s linear;
+      background: linear-gradient(to right, #3b82f6, #06b6d4);
+    }
+    #game-time-bar.urgent { background: linear-gradient(to right, #ef4444, #f97316); }
+
+    /* Streak badge */
+    #streak-badge {
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    #streak-badge.pop {
+      transform: scale(1.4);
+    }
+  </style>
+</head>
+
+<body class="bg-navy font-inter">
+
+  <!-- Custom cursor (hidden on touch devices via CSS) -->
+  <div id="custom-cursor" aria-hidden="true">
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+  </div>
+
+  <!-- ============================================================
+       STICKY NAVBAR
+  ============================================================ -->
+  <nav id="navbar" class="sticky top-0 z-50 bg-navy/90 backdrop-blur-md border-b border-white/5 transition-shadow duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-2 flex-shrink-0">
+          <span class="text-xl font-bold font-grotesk">
+            <span class="gradient-text">Swiftly</span><span class="text-white"> Tech</span>
+          </span>
+          <span class="text-yellow-400 text-lg">⚡</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#about" class="nav-link text-sm text-slate-300 font-medium">About</a>
+          <a href="#services" class="nav-link text-sm text-slate-300 font-medium">Services</a>
+          <a href="#industries" class="nav-link text-sm text-slate-300 font-medium">Industries</a>
+          <a href="#why-us" class="nav-link text-sm text-slate-300 font-medium">Why Us</a>
+          <a href="#process" class="nav-link text-sm text-slate-300 font-medium">Process</a>
+          <a href="#contact" class="nav-link text-sm text-slate-300 font-medium">Contact</a>
+        </div>
+
+        <!-- CTA + Hamburger -->
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="ripple-btn hidden md:inline-flex items-center gap-1.5 gradient-bg text-white text-sm font-semibold px-5 py-2 rounded-full pulse-glow hover:opacity-90 transition-opacity">
+            Get Started
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <button id="hamburger" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle menu">
+            <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-navy-deep border-t border-white/5">
+      <div class="px-4 py-4 flex flex-col gap-3">
+        <a href="#about" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">About</a>
+        <a href="#services" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Services</a>
+        <a href="#industries" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Industries</a>
+        <a href="#why-us" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Why Us</a>
+        <a href="#process" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Process</a>
+        <a href="#contact" class="mobile-nav-link text-sm text-slate-300 font-medium py-2">Contact</a>
+        <a href="#contact" class="gradient-bg text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center mt-2">Get Started →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <!-- Particle canvas -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- Background gradient orbs -->
+    <div class="glow-orb w-96 h-96 bg-blue-600/20 top-20 -left-24" aria-hidden="true"></div>
+    <div class="glow-orb w-80 h-80 bg-cyan-500/15 bottom-20 -right-20" aria-hidden="true"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+      <!-- Badge -->
+      <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 text-sm font-medium text-blue-300 border border-blue-500/30 bg-blue-500/10">
+        <span class="text-yellow-400">⚡</span>
+        Delivering at the Speed of Business
+      </div>
+
+      <!-- Headline -->
+      <h1 class="fade-up font-grotesk font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 text-white" data-delay="1">
+        <span id="typewriter-line">Build Fast. Scale Smart.</span><span class="tw-cursor" aria-hidden="true"></span><br />
+        <span class="gradient-text">Deliver Swiftly.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="fade-up text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" data-delay="2">
+        We engineer mobile apps, AI tools, ERP/CRM systems, and automation solutions
+        that give your business an <span class="text-slate-200 font-medium">unfair competitive advantage.</span>
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="fade-up flex flex-col sm:flex-row gap-4 justify-center" data-delay="3">
+        <a href="#contact" class="ripple-btn gradient-bg text-white font-semibold px-8 py-3.5 rounded-full hover:opacity-90 transition-all hover:scale-105 inline-flex items-center justify-center gap-2 text-base shadow-lg shadow-blue-500/25">
+          Start a Project
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a href="#services" class="relative text-white font-semibold px-8 py-3.5 rounded-full inline-flex items-center justify-center gap-2 text-base border border-white/20 bg-white/5 hover:bg-white/10 transition-all hover:scale-105">
+          Explore Services
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Trusted by badge -->
+      <div class="fade-up mt-14 text-slate-500 text-sm flex flex-wrap items-center justify-center gap-3" data-delay="4">
+        <span>Trusted by businesses across</span>
+        <span class="px-2 py-0.5 rounded bg-white/5 text-slate-400 text-xs border border-white/10">Healthcare</span>
+        <span class="px-2 py-0.5 rounded bg-white/5 text-slate-400 text-xs border border-white/10">Manufacturing</span>
+        <span class="px-2 py-0.5 rounded bg-white/5 text-slate-400 text-xs border border-white/10">E-commerce</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-slate-500 text-xs bounce-down">
+      <span>Scroll</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       ABOUT SECTION
+  ============================================================ -->
+  <section id="about" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-64 h-64 bg-blue-600/10 top-10 right-0" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+        <!-- Left: Story -->
+        <div>
+          <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+            <span class="w-6 h-px bg-blue-400"></span> About Us
+          </div>
+          <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6" data-delay="1">
+            We Don't Just Build Software.<br />
+            <span class="gradient-text">We Build Momentum.</span>
+          </h2>
+          <p class="fade-up text-slate-400 text-base leading-relaxed mb-5" data-delay="2">
+            Swiftly Tech was born from the belief that great software shouldn't take forever to build. Too many businesses lose competitive ground waiting months for solutions that should take weeks. We fix that.
+          </p>
+          <p class="fade-up text-slate-400 text-base leading-relaxed mb-5" data-delay="3">
+            We combine lean engineering principles with modern technology — mobile-first development, AI-powered automation, and scalable architecture — to deliver solutions that work from day one.
+          </p>
+          <p class="fade-up text-slate-400 text-base leading-relaxed" data-delay="4">
+            Our team thinks in systems and ships in sprints. Whether you need a customer-facing app, an internal operations platform, or an intelligent automation layer, we bring both the technical depth and the execution speed to make it real.
+          </p>
+        </div>
+
+        <!-- Right: Value cards -->
+        <div class="grid grid-cols-1 gap-5">
+          <!-- Speed -->
+          <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="1">
+            <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-grotesk font-bold text-white text-lg mb-1">Speed Without Shortcuts</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">We sprint — but never skip. Fast delivery through proven processes, not cutting corners. Your product ships right the first time.</p>
+            </div>
+          </div>
+          <!-- Precision -->
+          <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="2">
+            <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-grotesk font-bold text-white text-lg mb-1">Engineered for Precision</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">Clean architecture, thorough testing, detailed documentation. Every line of code is intentional, maintainable, and production-ready.</p>
+            </div>
+          </div>
+          <!-- Reliability -->
+          <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="3">
+            <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-grotesk font-bold text-white text-lg mb-1">Reliability You Can Count On</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">We stay accountable to timelines, communicate proactively, and treat your project's success as our own. Long-term trust is our currency.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       SERVICES SECTION
+  ============================================================ -->
+  <section id="services" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-72 h-72 bg-cyan-500/10 bottom-0 left-10" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section header -->
+      <div class="text-center mb-14">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> What We Build <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Solutions That Drive <span class="gradient-text">Real Results</span>
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-xl mx-auto" data-delay="2">
+          From mobile apps to intelligent automation — every service we offer is designed to create measurable business impact.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Mobile App Development -->
+        <div class="fade-up glass rounded-2xl p-7 service-card" data-delay="1">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">Mobile App Development</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">Native iOS & Android apps and cross-platform solutions built with performance, UX, and scalability in mind. Apps your users will actually love.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+        <!-- Custom ERP -->
+        <div class="fade-up glass rounded-2xl p-7 service-card" data-delay="2">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">Custom ERP Software</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">End-to-end enterprise resource planning tailored to your operations. Unify finance, inventory, HR, and production in one intelligent platform.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+        <!-- Custom CRM -->
+        <div class="fade-up glass rounded-2xl p-7 service-card" data-delay="3">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">Custom CRM Software</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">A CRM built around your sales process — not the other way around. Track leads, automate follow-ups, and close deals faster with a system that actually fits your team.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+        <!-- Salesforce -->
+        <div class="fade-up glass rounded-2xl p-7 service-card" data-delay="4">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">Salesforce Admin, Dev & Automation</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">Full Salesforce lifecycle management — from initial setup and customization to complex integrations, Flow automation, and Apex development. Maximize your Salesforce ROI.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+        <!-- Business Automation -->
+        <div class="fade-up glass rounded-2xl p-7 service-card" data-delay="5">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">Business Process Automation</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">Eliminate repetitive manual work at scale. We map, analyze, and automate your business workflows so your team focuses on work that actually matters.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+        <!-- AI Bots -->
+        <div class="fade-up glass rounded-2xl p-7 service-card" data-delay="6">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">AI Bots</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">Intelligent conversational bots and automated agents that handle customer support, internal queries, data extraction, and workflow triggers — 24/7, without breaking a sweat.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+        <!-- AI Wrappers — spans 2 cols on lg for balance with 7 items -->
+        <div class="fade-up glass rounded-2xl p-7 service-card sm:col-span-2 lg:col-span-1" data-delay="7">
+          <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="font-grotesk font-bold text-white text-lg mb-3">AI Wrappers & Copilots</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">We build custom AI layers on top of foundation models like ChatGPT — internal copilots, AI-powered search, document analysis tools, and smart automation layers tailored to your business context.</p>
+          <span class="text-blue-400 text-sm font-medium cursor-pointer hover:text-cyan-400 transition-colors">Explore service →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       INDUSTRIES SECTION
+  ============================================================ -->
+  <section id="industries" class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-14">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> Industries <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Deep Expertise Across <span class="gradient-text">Key Sectors</span>
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-xl mx-auto" data-delay="2">
+          We don't just build software — we understand the operational and regulatory realities of the industries we serve.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Healthcare -->
+        <div class="fade-up industry-card rounded-2xl overflow-hidden h-80 relative" data-delay="1">
+          <img
+            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80"
+            alt="Healthcare technology — digital health solutions"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="industry-overlay absolute inset-0"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-7">
+            <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center mb-3">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-xl mb-2">Healthcare</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Patient management systems, telehealth platforms, and HIPAA-compliant data workflows that improve care outcomes and reduce administrative burden.</p>
+          </div>
+        </div>
+
+        <!-- Manufacturing -->
+        <div class="fade-up industry-card rounded-2xl overflow-hidden h-80 relative" data-delay="2">
+          <img
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
+            alt="Manufacturing — smart factory automation"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="industry-overlay absolute inset-0"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-7">
+            <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center mb-3">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+              </svg>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-xl mb-2">Manufacturing</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Custom ERP, inventory control, production scheduling, and IoT integrations that reduce waste, optimize throughput, and bring full visibility to your shop floor.</p>
+          </div>
+        </div>
+
+        <!-- E-commerce -->
+        <div class="fade-up industry-card rounded-2xl overflow-hidden h-80 relative sm:col-span-2 lg:col-span-1" data-delay="3">
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80"
+            alt="E-commerce — digital retail and online shopping"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="industry-overlay absolute inset-0"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-7">
+            <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center mb-3">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-xl mb-2">E-Commerce</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">High-performance storefronts, custom order management, AI-powered recommendation engines, and seamless payment integrations that convert visitors into loyal customers.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       WHY CHOOSE US SECTION
+  ============================================================ -->
+  <section id="why-us" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-80 h-80 bg-blue-600/10 top-0 right-0" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-14">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> Why Us <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Why Companies Choose <span class="gradient-text">Swiftly Tech</span>
+        </h2>
+      </div>
+
+      <!-- Stats counters -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+        <div class="fade-up glass rounded-2xl p-8 text-center" data-delay="1">
+          <div class="font-grotesk font-extrabold text-5xl text-white mb-2">
+            <span class="counter gradient-text" data-target="50">0</span><span class="gradient-text">+</span>
+          </div>
+          <p class="text-slate-400 text-sm font-medium">Projects Delivered</p>
+        </div>
+        <div class="fade-up glass rounded-2xl p-8 text-center" data-delay="2">
+          <div class="font-grotesk font-extrabold text-5xl text-white mb-2">
+            <span class="counter gradient-text" data-target="30">0</span><span class="gradient-text">+</span>
+          </div>
+          <p class="text-slate-400 text-sm font-medium">Clients Worldwide</p>
+        </div>
+        <div class="fade-up glass rounded-2xl p-8 text-center" data-delay="3">
+          <div class="font-grotesk font-extrabold text-5xl text-white mb-2">
+            <span class="counter gradient-text" data-target="5">0</span><span class="gradient-text">+</span>
+          </div>
+          <p class="text-slate-400 text-sm font-medium">Years of Expertise</p>
+        </div>
+      </div>
+
+      <!-- Trust points -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="1">
+          <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-grotesk font-bold text-white text-base mb-1">Fast, Predictable Delivery</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Sprint-based development with regular demos. You always know what's coming next and when — no surprises, no delays without explanation.</p>
+          </div>
+        </div>
+
+        <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="2">
+          <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-grotesk font-bold text-white text-base mb-1">Scalable Architecture</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Solutions designed to grow with you — modular codebase, microservice-ready architecture, and cloud-native deployments that handle 10x traffic without a sweat.</p>
+          </div>
+        </div>
+
+        <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="3">
+          <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-grotesk font-bold text-white text-base mb-1">Clean, Maintainable Code</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Production-ready code with proper documentation, thorough testing, and clear structure — so your team can own and extend it long after launch.</p>
+          </div>
+        </div>
+
+        <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card" data-delay="4">
+          <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2h-2"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-grotesk font-bold text-white text-base mb-1">Automation-First Mindset</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">We look for automation opportunities before writing manual code. Every workflow we review is a chance to save your team hours every week.</p>
+          </div>
+        </div>
+
+        <div class="fade-up glass rounded-2xl p-6 flex items-start gap-5 service-card md:col-span-2" data-delay="5">
+          <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-grotesk font-bold text-white text-base mb-1">Long-Term Partnership Approach</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">We don't disappear after launch. We stay invested in your success — offering ongoing support, iterative improvements, and strategic technical guidance as your business evolves. Your roadmap is our roadmap.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       SPEED CHALLENGE GAME
+  ============================================================ -->
+  <section id="speed-challenge" class="py-20 lg:py-28 relative overflow-hidden">
+    <div class="glow-orb w-80 h-80 bg-cyan-500/10 top-0 left-1/2 -translate-x-1/2" aria-hidden="true"></div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-10">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> The Challenge <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Think You Can <span class="gradient-text">Keep Up?</span> ⚡
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-lg mx-auto" data-delay="2">
+          We built our company on speed. Hit the glowing targets before they vanish — 15 seconds on the clock. How many can you get?
+        </p>
+      </div>
+
+      <!-- Stats bar (score + timer + streak) -->
+      <div class="fade-up flex items-center justify-between mb-4 px-1" data-delay="3">
+        <div class="flex items-center gap-4">
+          <div class="glass rounded-xl px-4 py-2 text-center min-w-[70px]">
+            <p class="text-slate-500 text-xs uppercase tracking-wider">Score</p>
+            <p id="game-score" class="font-grotesk font-bold text-white text-xl">0</p>
+          </div>
+          <div id="streak-badge" class="glass rounded-xl px-4 py-2 text-center min-w-[70px]">
+            <p class="text-slate-500 text-xs uppercase tracking-wider">Streak</p>
+            <p id="game-streak" class="font-grotesk font-bold gradient-text text-xl">0</p>
+          </div>
+        </div>
+        <div class="glass rounded-xl px-4 py-2 text-center min-w-[70px]">
+          <p class="text-slate-500 text-xs uppercase tracking-wider">Best</p>
+          <p id="game-best" class="font-grotesk font-bold text-yellow-400 text-xl">0</p>
+        </div>
+      </div>
+
+      <!-- Time bar -->
+      <div class="fade-up h-1.5 w-full bg-white/5 rounded-full mb-4 overflow-hidden" data-delay="3">
+        <div id="game-time-bar" class="h-full rounded-full" style="width: 100%;"></div>
+      </div>
+
+      <!-- Game arena -->
+      <div id="game-arena" class="fade-up idle" data-delay="4" role="application" aria-label="Speed challenge game area">
+        <!-- Countdown overlay (shown during pre-game countdown) -->
+        <div id="game-countdown-overlay" style="display:none;">
+          <span id="game-countdown-number">3</span>
+        </div>
+        <!-- Miss flash overlay -->
+        <div id="game-miss-flash" aria-hidden="true"></div>
+        <!-- Idle state prompt -->
+        <div id="game-idle-prompt" class="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10">
+          <div class="text-5xl animate-float">🎯</div>
+          <p class="text-slate-400 text-sm">Click the button below to start</p>
+        </div>
+        <!-- Results overlay -->
+        <div id="game-results" class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10" style="display:none;">
+          <p id="game-result-emoji" class="text-5xl">⚡</p>
+          <p id="game-result-label" class="font-grotesk font-bold text-white text-2xl text-center px-4"></p>
+          <p id="game-result-score" class="text-slate-300 text-base"></p>
+          <p id="game-result-best" class="text-yellow-400 text-sm font-medium"></p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mt-6" data-delay="5">
+        <button
+          id="game-start-btn"
+          class="ripple-btn gradient-bg text-white font-semibold px-8 py-3 rounded-full hover:opacity-90 transition-all hover:scale-105 flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 3l14 9-14 9V3z"/>
+          </svg>
+          Start Challenge
+        </button>
+        <p class="text-slate-500 text-sm">
+          Best score is saved locally — can you beat it?
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       TEAM SECTION
+  ============================================================ -->
+  <section id="team" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-72 h-72 bg-purple-600/10 bottom-10 left-0" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-14">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> The Team <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Built by Engineers.<br /><span class="gradient-text">Driven by Results.</span>
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-xl mx-auto" data-delay="2">
+          Every person on our team is a problem-solver first. We hire for curiosity, depth, and ownership — not just technical skills.
+        </p>
+      </div>
+
+      <!-- Team cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+        <div class="fade-up glass rounded-2xl p-8 text-center service-card" data-delay="1">
+          <div class="team-avatar w-20 h-20 rounded-2xl mx-auto mb-5">AR</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">Arjun Rao</h3>
+          <p class="text-blue-400 text-sm font-medium mb-3">Lead Architect & Founder</p>
+          <p class="text-slate-400 text-sm leading-relaxed">10+ years building enterprise software. Obsessed with clean architecture and systems that scale. Believes every complex problem has an elegant solution.</p>
+        </div>
+
+        <div class="fade-up glass rounded-2xl p-8 text-center service-card" data-delay="2">
+          <div class="w-20 h-20 rounded-2xl mx-auto mb-5 flex items-center justify-center font-grotesk font-extrabold text-2xl text-white" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">SP</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">Sara Patel</h3>
+          <p class="text-blue-400 text-sm font-medium mb-3">Full-Stack & Mobile Lead</p>
+          <p class="text-slate-400 text-sm leading-relaxed">Specializes in cross-platform mobile development and high-performance web apps. Has shipped 20+ apps across healthcare, retail, and logistics.</p>
+        </div>
+
+        <div class="fade-up glass rounded-2xl p-8 text-center service-card sm:col-span-2 lg:col-span-1" data-delay="3">
+          <div class="w-20 h-20 rounded-2xl mx-auto mb-5 flex items-center justify-center font-grotesk font-extrabold text-2xl text-white" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6);">KM</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">Karan Mehta</h3>
+          <p class="text-blue-400 text-sm font-medium mb-3">AI & Automation Engineer</p>
+          <p class="text-slate-400 text-sm leading-relaxed">Brings AI into real business workflows. From LLM integrations to process automation pipelines — Karan turns theoretical AI into tangible business value.</p>
+        </div>
+
+      </div>
+
+      <!-- Team narrative -->
+      <div class="fade-up glass rounded-2xl p-8 lg:p-10 text-center max-w-3xl mx-auto">
+        <p class="text-slate-300 text-base leading-relaxed italic">
+          "We operate like a high-trust team of experts — clear ownership, honest communication, and shared accountability. We don't just answer to a ticket queue; we take real responsibility for outcomes. When you partner with Swiftly Tech, you're working with people who care deeply about whether your product actually works in the real world."
+        </p>
+        <p class="text-blue-400 text-sm font-semibold mt-4">— Arjun Rao, Founder</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       PROCESS SECTION
+  ============================================================ -->
+  <section id="process" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-64 h-64 bg-cyan-500/10 top-10 right-10" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> How We Work <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          A Process Built for <span class="gradient-text">Speed & Clarity</span>
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-xl mx-auto" data-delay="2">
+          Predictable, transparent, and built around your success — from first conversation to scaled deployment.
+        </p>
+      </div>
+
+      <!-- Steps -->
+      <div class="relative">
+        <!-- Connector line (desktop only) -->
+        <div class="hidden lg:block absolute top-12 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" aria-hidden="true"></div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4">
+
+          <div class="fade-up text-center" data-delay="1">
+            <div class="relative inline-flex items-center justify-center w-24 h-24 gradient-bg rounded-2xl mb-5 mx-auto">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-navy border-2 border-blue-500 rounded-full flex items-center justify-center text-xs font-grotesk font-bold text-blue-400">1</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-lg mb-2">Understand</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Deep discovery sessions to map your goals, constraints, users, and success criteria.</p>
+          </div>
+
+          <div class="fade-up text-center" data-delay="2">
+            <div class="relative inline-flex items-center justify-center w-24 h-24 gradient-bg rounded-2xl mb-5 mx-auto" style="background: linear-gradient(135deg, #2563eb, #0891b2);">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-navy border-2 border-blue-500 rounded-full flex items-center justify-center text-xs font-grotesk font-bold text-blue-400">2</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-lg mb-2">Design</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Architecture blueprint, UX wireframes, and technical specification — agreed before a single line of code is written.</p>
+          </div>
+
+          <div class="fade-up text-center" data-delay="3">
+            <div class="relative inline-flex items-center justify-center w-24 h-24 gradient-bg rounded-2xl mb-5 mx-auto" style="background: linear-gradient(135deg, #0891b2, #059669);">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-navy border-2 border-blue-500 rounded-full flex items-center justify-center text-xs font-grotesk font-bold text-blue-400">3</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-lg mb-2">Build</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Agile sprints with regular demos and check-ins. You see progress weekly — no black-box development.</p>
+          </div>
+
+          <div class="fade-up text-center" data-delay="4">
+            <div class="relative inline-flex items-center justify-center w-24 h-24 gradient-bg rounded-2xl mb-5 mx-auto" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+              </svg>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-navy border-2 border-blue-500 rounded-full flex items-center justify-center text-xs font-grotesk font-bold text-blue-400">4</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-lg mb-2">Optimize</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Performance tuning, QA testing, security review, and load testing before anything goes live.</p>
+          </div>
+
+          <div class="fade-up text-center" data-delay="5">
+            <div class="relative inline-flex items-center justify-center w-24 h-24 gradient-bg rounded-2xl mb-5 mx-auto" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+              <span class="absolute -top-2 -right-2 w-7 h-7 bg-navy border-2 border-blue-500 rounded-full flex items-center justify-center text-xs font-grotesk font-bold text-blue-400">5</span>
+            </div>
+            <h3 class="font-grotesk font-bold text-white text-lg mb-2">Scale</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Post-launch monitoring, iterative improvements, and long-term partnership to grow with your success.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       CONTACT SECTION
+  ============================================================ -->
+  <section id="contact" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-80 h-80 bg-blue-600/10 bottom-10 left-0" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-14">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> Contact Us <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Let's Build Something <span class="gradient-text">Remarkable</span>
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-xl mx-auto" data-delay="2">
+          Tell us about your project. We'll respond within 24 hours with a clear next step.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
+
+        <!-- Contact Info -->
+        <div class="fade-up" data-delay="1">
+          <h3 class="font-grotesk font-bold text-white text-2xl mb-6">Get in Touch</h3>
+
+          <div class="space-y-5 mb-8">
+            <div class="flex items-center gap-4">
+              <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-slate-500 text-xs uppercase tracking-wider mb-0.5">Email</p>
+                <a href="mailto:hello@swiftlytech.com" class="text-white font-medium hover:text-blue-400 transition-colors">hello@swiftlytech.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="gradient-bg p-3 rounded-xl flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-slate-500 text-xs uppercase tracking-wider mb-0.5">Response Time</p>
+                <p class="text-white font-medium">Within 24 hours</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- What to expect -->
+          <div class="glass rounded-2xl p-6">
+            <h4 class="font-grotesk font-bold text-white text-base mb-4">What happens next?</h4>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <span class="gradient-bg text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                <p class="text-slate-400 text-sm">We review your message and do a quick analysis of your requirements.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="gradient-bg text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                <p class="text-slate-400 text-sm">You receive a response within 24 hours with initial thoughts and questions.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="gradient-bg text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                <p class="text-slate-400 text-sm">We schedule a 30-minute discovery call to align on scope, timeline, and fit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="fade-up" data-delay="2">
+          <form id="contact-form" class="glass rounded-2xl p-7 lg:p-8 space-y-5" novalidate>
+            <div>
+              <label for="contact-name" class="block text-sm font-medium text-slate-300 mb-2">Your Name <span class="text-blue-400">*</span></label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                placeholder="Alex Johnson"
+                required
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 transition-all"
+              />
+            </div>
+            <div>
+              <label for="contact-email" class="block text-sm font-medium text-slate-300 mb-2">Email Address <span class="text-blue-400">*</span></label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                placeholder="alex@company.com"
+                required
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 transition-all"
+              />
+            </div>
+            <div>
+              <label for="contact-company" class="block text-sm font-medium text-slate-300 mb-2">Company <span class="text-slate-600 text-xs">(optional)</span></label>
+              <input
+                type="text"
+                id="contact-company"
+                name="company"
+                placeholder="Your Company Inc."
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 transition-all"
+              />
+            </div>
+            <div>
+              <label for="contact-message" class="block text-sm font-medium text-slate-300 mb-2">Your Message <span class="text-blue-400">*</span></label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                placeholder="Tell us about your project — what you're building, your timeline, and any specific challenges you're facing..."
+                required
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 transition-all resize-none"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="ripple-btn w-full gradient-bg text-white font-semibold py-3.5 rounded-xl hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+            >
+              Send Message
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="bg-navy-deep border-t border-white/5 pt-14 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <a href="#hero" class="flex items-center gap-2 mb-4">
+            <span class="text-xl font-bold font-grotesk">
+              <span class="gradient-text">Swiftly</span><span class="text-white"> Tech</span>
+            </span>
+            <span class="text-yellow-400">⚡</span>
+          </a>
+          <p class="text-slate-500 text-sm leading-relaxed mb-5">
+            Engineering at the speed of business. We build software that moves as fast as your ambitions.
+          </p>
+          <!-- Social links -->
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500/50 transition-all" aria-label="LinkedIn">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-9 h-9 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500/50 transition-all" aria-label="Twitter">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-9 h-9 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500/50 transition-all" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="font-grotesk font-bold text-white text-sm uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#about" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">About Us</a></li>
+            <li><a href="#team" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Our Team</a></li>
+            <li><a href="#process" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Our Process</a></li>
+            <li><a href="#why-us" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Why Swiftly Tech</a></li>
+            <li><a href="#contact" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="font-grotesk font-bold text-white text-sm uppercase tracking-wider mb-4">Services</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#services" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Mobile App Development</a></li>
+            <li><a href="#services" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Custom ERP Software</a></li>
+            <li><a href="#services" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Salesforce Solutions</a></li>
+            <li><a href="#services" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">AI Bots & Automation</a></li>
+            <li><a href="#services" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">AI Wrappers & Copilots</a></li>
+          </ul>
+        </div>
+
+        <!-- Industries + CTA -->
+        <div>
+          <h4 class="font-grotesk font-bold text-white text-sm uppercase tracking-wider mb-4">Industries</h4>
+          <ul class="space-y-2.5 mb-6">
+            <li><a href="#industries" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Healthcare</a></li>
+            <li><a href="#industries" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Manufacturing</a></li>
+            <li><a href="#industries" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">E-Commerce</a></li>
+          </ul>
+          <a href="#contact" class="inline-flex items-center gap-2 gradient-bg text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity">
+            Start a Project →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-slate-600 text-sm">© 2025 Swiftly Tech. All rights reserved.</p>
+        <p class="text-slate-600 text-sm">Engineered with precision. Delivered with speed.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div
+    id="toast"
+    class="hide fixed bottom-6 right-6 z-50 glass-strong rounded-xl px-5 py-4 flex items-center gap-3 max-w-xs shadow-2xl pointer-events-none"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+    <p class="text-white text-sm font-medium">Message sent! We'll be in touch soon.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
