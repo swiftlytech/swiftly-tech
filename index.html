@@ -350,6 +350,193 @@
       50% { opacity: 0; }
     }
 
+    /* ── Case Studies ── */
+    .case-filter {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #94a3b8;
+      padding: 0.5rem 1.1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+    .case-filter:hover { color: #e2e8f0; border-color: rgba(59,130,246,0.4); }
+    .case-filter.active {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    }
+    .case-card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .case-card:hover { border-color: rgba(59,130,246,0.35); box-shadow: 0 24px 50px rgba(59,130,246,0.08); }
+    .case-card.is-hidden { display: none; }
+    .case-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      min-height: 300px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(59,130,246,0.18), transparent 60%),
+        radial-gradient(circle at 80% 90%, rgba(6,182,212,0.14), transparent 55%),
+        #0d1224;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    @media (min-width: 640px) { .case-visual { padding: 2.5rem; } }
+    @media (min-width: 1024px) {
+      .case-visual { border-bottom: 0; min-height: 100%; }
+      .case-visual.lg\:order-2 { border-left: 1px solid rgba(255,255,255,0.06); }
+      .case-visual:not(.lg\:order-2) { border-right: 1px solid rgba(255,255,255,0.06); }
+    }
+    .case-visual > .case-window { width: 100%; max-width: 420px; }
+    .case-window {
+      background: rgba(10,15,30,0.85);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.875rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .case-window-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+    .case-window-bar > span { width: 7px; height: 7px; border-radius: 9999px; background: rgba(255,255,255,0.15); }
+    .case-window-bar > p { margin-left: 0.4rem; font-size: 11px; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .case-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 0.5rem;
+      padding: 0.45rem 0.6rem;
+    }
+    .case-stat p { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; }
+    .case-stat strong { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; color: #fff; }
+    .case-stat small { font-size: 10px; font-weight: 400; color: #94a3b8; }
+    .case-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 11px;
+      line-height: 1.45;
+      color: #fcd34d;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.65rem;
+    }
+    .live-dot { width: 6px; height: 6px; border-radius: 9999px; background: #34d399; box-shadow: 0 0 0 0 rgba(52,211,153,0.6); animation: live-pulse 1.8s ease-out infinite; }
+    @keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.6); } 100% { box-shadow: 0 0 0 7px rgba(52,211,153,0); } }
+    .ecg-line { stroke-dasharray: 600; stroke-dashoffset: 600; animation: ecg-draw 3.2s linear infinite; }
+    @keyframes ecg-draw { to { stroke-dashoffset: 0; } }
+    .case-slider { height: 4px; border-radius: 9999px; background: rgba(255,255,255,0.08); }
+    .case-slider span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+    .case-sync {
+      position: absolute;
+      left: -1.15rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      box-shadow: 0 0 0 4px #0d1224;
+      z-index: 1;
+    }
+    .case-chain { list-style: none; margin: 0; }
+    .case-chain li { position: relative; display: flex; gap: 0.85rem; padding-bottom: 1rem; }
+    .case-chain li:last-child { padding-bottom: 0; }
+    .case-chain li:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 16px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(59,130,246,0.6), rgba(6,182,212,0.3));
+    }
+    .case-chain-dot { flex-shrink: 0; margin-top: 3px; width: 14px; height: 14px; border-radius: 9999px; border: 2px solid #3b82f6; background: #0a0f1e; }
+    .case-chain li.is-current .case-chain-dot { background: linear-gradient(135deg, #3b82f6, #06b6d4); border-color: transparent; box-shadow: 0 0 12px rgba(6,182,212,0.6); }
+    .case-chain strong { display: block; font-size: 13px; color: #fff; font-weight: 600; }
+    .case-chain p { font-size: 11px; color: #64748b; }
+    .case-bar { display: grid; grid-template-columns: 6.5rem 1fr; align-items: center; gap: 0.75rem; font-size: 11px; color: #94a3b8; }
+    .case-bar > div { height: 8px; border-radius: 9999px; background: rgba(255,255,255,0.05); }
+    .case-bar i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+    .case-check {
+      font-size: 10.5px;
+      color: #6ee7b7;
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 9999px;
+      padding: 0.2rem 0.6rem;
+    }
+    .case-check::before { content: '✓ '; }
+    .case-phone {
+      width: 7.5rem;
+      flex-shrink: 0;
+      padding: 1rem 0.7rem 0.8rem;
+      border-radius: 1.1rem;
+      background: rgba(10,15,30,0.9);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    .case-phone-notch { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 28px; height: 4px; border-radius: 9999px; background: rgba(255,255,255,0.15); }
+    .case-body { padding: 1.75rem; }
+    @media (min-width: 640px) { .case-body { padding: 2.5rem; } }
+    .case-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin-bottom: 1rem; font-size: 0.75rem; color: #64748b; }
+    .case-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #60a5fa;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 9999px;
+      padding: 0.2rem 0.7rem;
+    }
+    .case-title { font-weight: 700; color: #fff; font-size: 1.5rem; line-height: 1.25; margin-bottom: 0.75rem; }
+    @media (min-width: 640px) { .case-title { font-size: 1.75rem; } }
+    .case-lead { color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem; }
+    .case-points { display: grid; gap: 1.1rem; margin-bottom: 1.5rem; }
+    .case-points dt { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #22d3ee; margin-bottom: 0.35rem; }
+    .case-points dd { color: #94a3b8; font-size: 0.875rem; line-height: 1.65; }
+    .case-points ul { display: grid; gap: 0.35rem; }
+    .case-points li { position: relative; padding-left: 1.1rem; }
+    .case-points li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 9999px; background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+    .case-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .case-stack span { font-size: 0.75rem; font-weight: 500; color: #e2e8f0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; padding: 0.3rem 0.7rem; }
+    .case-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(59,130,246,0.25);
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.08));
+    }
+    @media (min-width: 768px) { .case-cta { flex-direction: row; align-items: center; padding: 2.5rem 3rem; } }
+    @media (prefers-reduced-motion: reduce) {
+      .ecg-line { animation: none; stroke-dashoffset: 0; }
+      .live-dot { animation: none; }
+    }
+
     /* ── Speed Challenge Game ── */
     #game-arena {
       position: relative;
@@ -505,6 +692,7 @@
           <a href="#about" class="nav-link text-sm text-slate-300 font-medium">About</a>
           <a href="#services" class="nav-link text-sm text-slate-300 font-medium">Services</a>
           <a href="#industries" class="nav-link text-sm text-slate-300 font-medium">Industries</a>
+          <a href="#case-studies" class="nav-link text-sm text-slate-300 font-medium">Case Studies</a>
           <a href="#why-us" class="nav-link text-sm text-slate-300 font-medium">Why Us</a>
           <a href="#process" class="nav-link text-sm text-slate-300 font-medium">Process</a>
           <a href="#contact" class="nav-link text-sm text-slate-300 font-medium">Contact</a>
@@ -533,6 +721,7 @@
         <a href="#about" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">About</a>
         <a href="#services" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Services</a>
         <a href="#industries" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Industries</a>
+        <a href="#case-studies" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Case Studies</a>
         <a href="#why-us" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Why Us</a>
         <a href="#process" class="mobile-nav-link text-sm text-slate-300 font-medium py-2 border-b border-white/5">Process</a>
         <a href="#contact" class="mobile-nav-link text-sm text-slate-300 font-medium py-2">Contact</a>
@@ -877,6 +1066,274 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================================================
+       CASE STUDIES SECTION
+  ============================================================ -->
+  <section id="case-studies" class="py-20 lg:py-28 relative">
+    <div class="glow-orb w-80 h-80 bg-blue-600/10 top-20 left-0" aria-hidden="true"></div>
+    <div class="glow-orb w-72 h-72 bg-cyan-500/10 bottom-20 right-0" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div class="text-center mb-10">
+        <div class="fade-up inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">
+          <span class="w-6 h-px bg-blue-400"></span> Case Studies <span class="w-6 h-px bg-blue-400"></span>
+        </div>
+        <h2 class="fade-up font-grotesk font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4" data-delay="1">
+          Work That <span class="gradient-text">Runs Real Operations</span>
+        </h2>
+        <p class="fade-up text-slate-400 text-base max-w-2xl mx-auto" data-delay="2">
+          From hospital critical-care units to dairy plants and sales floors — a look at the problems we've solved and the systems our clients rely on every day.
+        </p>
+      </div>
+
+      <!-- Filters -->
+      <div class="fade-up flex flex-wrap justify-center gap-2 mb-12" data-delay="3" role="group" aria-label="Filter case studies by industry">
+        <button type="button" class="case-filter active" data-filter="all" aria-pressed="true">All Work</button>
+        <button type="button" class="case-filter" data-filter="healthcare" aria-pressed="false">Healthcare</button>
+        <button type="button" class="case-filter" data-filter="manufacturing" aria-pressed="false">Manufacturing</button>
+        <button type="button" class="case-filter" data-filter="retail" aria-pressed="false">Retail</button>
+      </div>
+
+      <div class="space-y-8 lg:space-y-10">
+
+        <!-- ── 1. Smart Patient Monitors ── -->
+        <article class="case-card fade-up" data-category="healthcare">
+          <div class="grid lg:grid-cols-2">
+            <div class="case-visual">
+              <div class="case-window">
+                <div class="case-window-bar"><span></span><span></span><span></span><p>ICU · Bed 04 · Live</p></div>
+                <div class="p-4 sm:p-5">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] uppercase tracking-wider text-slate-500">ECMO Console Feed</span>
+                    <span class="flex items-center gap-1.5 text-[11px] text-emerald-400"><span class="live-dot"></span>Streaming</span>
+                  </div>
+                  <svg class="w-full h-20" viewBox="0 0 300 80" fill="none" aria-hidden="true">
+                    <polyline class="ecg-line" points="0,45 30,45 40,45 46,30 52,60 58,10 64,70 70,45 100,45 130,45 140,45 146,30 152,60 158,10 164,70 170,45 200,45 230,45 240,45 246,30 252,60 258,10 264,70 270,45 300,45" stroke="url(#ecg-grad)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                    <defs><linearGradient id="ecg-grad" x1="0" x2="300" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
+                  </svg>
+                  <div class="grid grid-cols-3 gap-2 mt-3">
+                    <div class="case-stat"><p>Flow</p><strong>4.2<small> L/min</small></strong></div>
+                    <div class="case-stat"><p>SpO₂</p><strong>97<small>%</small></strong></div>
+                    <div class="case-stat"><p>RPM</p><strong>3450</strong></div>
+                  </div>
+                  <div class="case-alert mt-3">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+                    <span><strong>Rule fired:</strong> Pre-oxygenator pressure above threshold — care team notified</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span class="case-tag">Healthcare</span><span>Hospital Critical Care</span></div>
+              <h3 class="case-title">Smart Patient Monitors, Wired to Live ECMO Data</h3>
+              <p class="case-lead">We connected life-support hardware directly to a modern monitoring platform, so clinicians see every critical reading in one place — and get alerted the moment something drifts.</p>
+              <dl class="case-points">
+                <div><dt>The Challenge</dt><dd>Critical-care teams were reading vitals off individual machines. They needed a single live view and alerts they could trust, without waiting on a software release every time a clinical rule changed.</dd></div>
+                <div><dt>What We Built</dt><dd>
+                  <ul>
+                    <li>Direct integration with the ECMO console to capture patient data in real time</li>
+                    <li>Smart monitor screens that put the full patient picture in front of clinicians at a glance</li>
+                    <li>A configurable rule engine — clinical teams define thresholds and conditions, alerts fire automatically from live data</li>
+                  </ul>
+                </dd></div>
+                <div><dt>The Outcome</dt><dd>Faster, better-informed decisions at the bedside, with alert logic that the clinical team owns and adjusts themselves.</dd></div>
+              </dl>
+              <div class="case-stack"><span>.NET</span><span>React</span><span>Medical Device Integration</span><span>Rule Engine</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 2. ECMO Training Simulator ── -->
+        <article class="case-card fade-up" data-category="healthcare">
+          <div class="grid lg:grid-cols-2">
+            <div class="case-visual lg:order-2">
+              <div class="grid grid-cols-2 gap-3 w-full items-center">
+                <div class="case-window">
+                  <div class="case-window-bar"><span></span><span></span><span></span><p>Trainer</p></div>
+                  <div class="p-3 space-y-3">
+                    <p class="text-[11px] uppercase tracking-wider text-slate-500">Scenario: Circuit Clot</p>
+                    <div><div class="flex justify-between text-[11px] text-slate-400 mb-1"><span>Flow</span><span>2.8</span></div><div class="case-slider"><span style="width:45%"></span></div></div>
+                    <div><div class="flex justify-between text-[11px] text-slate-400 mb-1"><span>SpO₂</span><span>88</span></div><div class="case-slider"><span style="width:70%"></span></div></div>
+                    <div><div class="flex justify-between text-[11px] text-slate-400 mb-1"><span>Pressure</span><span>310</span></div><div class="case-slider"><span style="width:82%"></span></div></div>
+                    <div class="text-center text-[11px] font-semibold text-white gradient-bg rounded-md py-1.5">Push to Trainee</div>
+                  </div>
+                </div>
+                <div class="case-window relative">
+                  <div class="case-sync" aria-hidden="true">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                  </div>
+                  <div class="case-window-bar"><span></span><span></span><span></span><p>Trainee · Read-only</p></div>
+                  <div class="p-3 space-y-2">
+                    <div class="case-stat"><p>Flow</p><strong class="text-amber-300">2.8<small> L/min</small></strong></div>
+                    <div class="case-stat"><p>SpO₂</p><strong class="text-amber-300">88<small>%</small></strong></div>
+                    <div class="case-stat"><p>Pressure</p><strong class="text-rose-400">310<small> mmHg</small></strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-body lg:order-1">
+              <div class="case-meta"><span class="case-tag">Healthcare</span><span>Medical Training</span></div>
+              <h3 class="case-title">A Dual-Screen Simulator for ECMO Training</h3>
+              <p class="case-lead">Realistic, hands-on ECMO training without a patient at risk. The trainer drives the scenario; the trainee responds as if they were at the bedside.</p>
+              <dl class="case-points">
+                <div><dt>The Challenge</dt><dd>ECMO is high-stakes, and real emergencies can't be rehearsed on real patients. Training teams needed scenarios they could control, change on the fly, and repeat.</dd></div>
+                <div><dt>What We Built</dt><dd>
+                  <ul>
+                    <li>A trainer console for configuring and adjusting live clinical scenarios</li>
+                    <li>A read-only trainee screen that mirrors every change the instant it happens</li>
+                    <li>Real-time sync over WebSockets, so both screens always tell the same story</li>
+                  </ul>
+                </dd></div>
+                <div><dt>The Outcome</dt><dd>Trainers can run lifelike, repeatable scenarios, and trainees build confidence before they face the real thing.</dd></div>
+              </dl>
+              <div class="case-stack"><span>Node.js</span><span>React</span><span>WebSockets</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 3. Back Traceability ── -->
+        <article class="case-card fade-up" data-category="manufacturing">
+          <div class="grid lg:grid-cols-2">
+            <div class="case-visual">
+              <div class="case-window">
+                <div class="case-window-bar"><span></span><span></span><span></span><p>Trace · LOT CH-2041</p></div>
+                <ol class="case-chain p-4 sm:p-5">
+                  <li><span class="case-chain-dot"></span><div><strong>Milk Collection</strong><p>Farm route 12 · Tanker T-07</p></div></li>
+                  <li><span class="case-chain-dot"></span><div><strong>Processing</strong><p>Vat 3 · Pasteurized &amp; cultured</p></div></li>
+                  <li><span class="case-chain-dot"></span><div><strong>Aging</strong><p>Cave B · 90 days</p></div></li>
+                  <li><span class="case-chain-dot"></span><div><strong>Packaging</strong><p>Line 2 · 1,200 units</p></div></li>
+                  <li class="is-current"><span class="case-chain-dot"></span><div><strong>Distribution</strong><p>Shipped to 4 distributors</p></div></li>
+                </ol>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span class="case-tag">Manufacturing</span><span>US-based Cheese Manufacturer</span></div>
+              <h3 class="case-title">Farm-to-Shelf Traceability for a Cheese Maker</h3>
+              <p class="case-lead">A web platform that follows every batch through the entire operation — from the milk that came in at the dock to the cheese that went out the door.</p>
+              <dl class="case-points">
+                <div><dt>The Challenge</dt><dd>Tracing a finished product back to its source meant chasing records across departments. In food manufacturing, that slows down audits and makes recalls risky.</dd></div>
+                <div><dt>What We Built</dt><dd>
+                  <ul>
+                    <li>End-to-end tracking across milk collection, processing, aging, packaging and distribution</li>
+                    <li>Lot-level genealogy linking every finished product to its raw inputs</li>
+                    <li>Fast back-tracing, so any batch can be traced to its origin in moments</li>
+                  </ul>
+                </dd></div>
+                <div><dt>The Outcome</dt><dd>Full visibility across the operation chain, and the confidence of being ready for audits and recalls.</dd></div>
+              </dl>
+              <div class="case-stack"><span>.NET</span><span>Angular</span><span>Web Platform</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 4. Salesforce Sales Cloud ── -->
+        <article class="case-card fade-up" data-category="manufacturing">
+          <div class="grid lg:grid-cols-2">
+            <div class="case-visual lg:order-2">
+              <div class="case-window">
+                <div class="case-window-bar"><span></span><span></span><span></span><p>Sales Cloud · Pipeline</p></div>
+                <div class="p-4 sm:p-5 space-y-2.5">
+                  <div class="case-bar"><span>Prospecting</span><div><i style="width:100%"></i></div></div>
+                  <div class="case-bar"><span>Qualification</span><div><i style="width:78%"></i></div></div>
+                  <div class="case-bar"><span>Proposal</span><div><i style="width:58%"></i></div></div>
+                  <div class="case-bar"><span>Negotiation</span><div><i style="width:40%"></i></div></div>
+                  <div class="case-bar"><span>Closed Won</span><div><i style="width:28%"></i></div></div>
+                  <div class="flex flex-wrap gap-2 pt-3">
+                    <span class="case-check">Flow · Lead auto-routed</span>
+                    <span class="case-check">Trigger · Account synced</span>
+                    <span class="case-check">Apex · Approval complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-body lg:order-1">
+              <div class="case-meta"><span class="case-tag">Salesforce</span><span>US-based Pharmaceutical Manufacturer</span></div>
+              <h3 class="case-title">Sales Operations, Rebuilt on Salesforce Sales Cloud</h3>
+              <p class="case-lead">We shaped Sales Cloud around how this team actually sells, then automated the busywork so reps could spend their time with customers.</p>
+              <dl class="case-points">
+                <div><dt>The Challenge</dt><dd>Sales operations ran on manual updates and disconnected tracking. Leadership had no reliable, current view of the pipeline.</dd></div>
+                <div><dt>What We Built</dt><dd>
+                  <ul>
+                    <li>A Sales Cloud setup tailored to their sales process and team structure</li>
+                    <li>Flows for lead routing, approvals and follow-up automation</li>
+                    <li>Apex and Triggers for business logic and data integrity that point-and-click tools can't handle</li>
+                  </ul>
+                </dd></div>
+                <div><dt>The Outcome</dt><dd>One source of truth for sales ops: less manual work for reps and a clear, current pipeline for leadership.</dd></div>
+              </dl>
+              <div class="case-stack"><span>Sales Cloud</span><span>Apex</span><span>Triggers</span><span>Flows</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 5. POS Platform ── -->
+        <article class="case-card fade-up" data-category="retail">
+          <div class="grid lg:grid-cols-2">
+            <div class="case-visual">
+              <div class="flex items-end gap-3 w-full">
+                <div class="case-window flex-1">
+                  <div class="case-window-bar"><span></span><span></span><span></span><p>Counter · Register 1</p></div>
+                  <div class="p-4 space-y-2 text-[12px]">
+                    <div class="flex justify-between text-slate-300"><span>Cold Brew × 2</span><span>$9.00</span></div>
+                    <div class="flex justify-between text-slate-300"><span>Croissant × 1</span><span>$3.75</span></div>
+                    <div class="flex justify-between text-slate-300"><span>Granola Bowl × 1</span><span>$6.50</span></div>
+                    <div class="flex justify-between text-white font-semibold border-t border-white/10 pt-2"><span>Total</span><span>$19.25</span></div>
+                    <div class="flex items-center justify-between text-[11px] pt-1">
+                      <span class="text-slate-500">Inventory</span>
+                      <span class="text-emerald-400">Stock updated ✓</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="case-phone">
+                  <div class="case-phone-notch"></div>
+                  <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-2">Online Order</p>
+                  <p class="text-white text-[12px] font-semibold mb-1">#1087 · Pickup</p>
+                  <p class="text-slate-400 text-[11px] mb-3">3 items · $19.25</p>
+                  <div class="text-center text-[11px] font-semibold text-white gradient-bg rounded-md py-1.5">Accepted</div>
+                </div>
+              </div>
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span class="case-tag">Retail</span><span>Custom POS Platform</span></div>
+              <h3 class="case-title">One Platform for the Counter, the Stockroom and Online Orders</h3>
+              <p class="case-lead">A custom point-of-sale system with built-in inventory management and online ordering, so in-store and online sales run on the same system.</p>
+              <dl class="case-points">
+                <div><dt>The Challenge</dt><dd>Off-the-shelf POS tools kept sales, stock and online orders in separate silos, which meant double entry, stock mismatches and missed orders.</dd></div>
+                <div><dt>What We Built</dt><dd>
+                  <ul>
+                    <li>A fast, intuitive web POS for counter staff</li>
+                    <li>Inventory management that updates with every sale</li>
+                    <li>An online ordering app plus a React Native mobile app, both feeding the same system</li>
+                  </ul>
+                </dd></div>
+                <div><dt>The Outcome</dt><dd>One connected platform across every channel: accurate stock, smoother service and no orders slipping through the cracks.</dd></div>
+              </dl>
+              <div class="case-stack"><span>.NET</span><span>Angular</span><span>React Native</span></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="fade-up case-cta mt-14">
+        <div>
+          <h3 class="font-grotesk font-bold text-white text-2xl sm:text-3xl mb-2">Have a challenge like these?</h3>
+          <p class="text-slate-400 text-sm sm:text-base max-w-xl">Tell us what you're trying to fix. We'll come back within 24 hours with a clear, honest view of how we'd approach it.</p>
+        </div>
+        <a href="#contact" class="ripple-btn inline-flex items-center gap-2 gradient-bg text-white text-sm font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity flex-shrink-0">
+          Discuss Your Project
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -1397,6 +1854,7 @@
           <ul class="space-y-2.5">
             <li><a href="#about" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">About Us</a></li>
             <li><a href="#team" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Our Team</a></li>
+            <li><a href="#case-studies" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Case Studies</a></li>
             <li><a href="#process" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Our Process</a></li>
             <li><a href="#why-us" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Why Swiftly Tech</a></li>
             <li><a href="#contact" class="text-slate-500 text-sm hover:text-blue-400 transition-colors">Contact</a></li>
