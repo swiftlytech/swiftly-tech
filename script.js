@@ -13,6 +13,7 @@
      10. 3D card tilt on hover
      11. Hero typewriter cycling effect
      12. Speed Challenge mini-game
+     13. Case study industry filters
 ============================================================ */
 
 (function () {
@@ -763,6 +764,34 @@
   }
 
   /* ─────────────────────────────────────────────
+     14. CASE STUDY FILTERS
+  ───────────────────────────────────────────── */
+  function initCaseFilters() {
+    const buttons = document.querySelectorAll('.case-filter');
+    const cards = document.querySelectorAll('.case-card');
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const filter = btn.dataset.filter;
+
+        buttons.forEach(function (b) {
+          const isActive = b === btn;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        cards.forEach(function (card) {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.classList.toggle('is-hidden', !match);
+          // Cards revealed by a filter may never have intersected yet
+          if (match) card.classList.add('visible');
+        });
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────
      INIT ALL
   ───────────────────────────────────────────── */
   function init() {
@@ -779,6 +808,7 @@
     initCardTilt();
     initTypewriter();
     initSpeedGame();
+    initCaseFilters();
   }
 
   if (document.readyState === 'loading') {
